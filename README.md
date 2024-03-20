@@ -18,12 +18,15 @@ Några steg:
 5. Kör `php artisan migrate` (skapa databasen)
 6. Kör `php artisan db:seed`
 7. Kör `php artisan serve`
+*DONE*
 
 Testa sedan de olika requesten du får tillgång till genom att importera filen: "Insomnia_U06_requests.json" till er Insomnia klient. Ni kan behöva registrera till Insomnia (t.ex. med Github kontot) för att kunna importera en fil.
+*DONE*
 
 När ni testar API:et kommer ni att behöva plocka ut de bearer tokens ni får vid inlogg eller registrering och klistra in i Bearer fältet för att kunna få åtkomst till de API vägar som ligger bakom authentication.
 
 ![](2023-03-14-12-46-36.png)
+*DONE*
 
 När ni fått backenden att fungera och ni känner att ni grundläggande förstår er på koden så behöver ni inte göra något mer här vid detta tillfälle. Låt appen ligga och köra i bakgrunden med php artisan serve och fokusera nu istället på att bygga er frontend. 
 
