@@ -1,5 +1,10 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { AuthService } from './services/auth.service';
+import { LoginDetails } from './interfaces/login-details';
+import { User } from './interfaces/user';
+import { Observable } from 'rxjs';
+import { AsyncPipe, CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -10,4 +15,27 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'RecipeFrontApp';
+
+  loginDetails: LoginDetails;
+
+  loggedIn$: Observable<boolean>;
+
+  constructor(private auth: AuthService) {
+    this.loginDetails = {
+      email: "seb@seb.seb",
+      password: "sebsebseb"
+    }
+
+    this.loggedIn$ = this.auth.loggedIn$;
+    console.log(auth.getUser2());
+  }
+
+  login() {
+    this.auth.loginUser(this.loginDetails);
+  }
+  logout() {
+    this.auth.logOut();
+  }
 }
+
+//allt fluff ska ingå här

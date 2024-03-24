@@ -1,5 +1,13 @@
+import { inject } from '@angular/core';
 import { CanActivateFn } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+import { Observable, pipe, tap } from 'rxjs';
 
 export const authGuard: CanActivateFn = (route, state) => {
-  return true;
+
+  const auth: AuthService = inject(AuthService);
+
+  console.log(auth.getLoginStatus());
+
+  return auth.getLoginStatus();
 };
