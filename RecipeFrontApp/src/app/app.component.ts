@@ -5,11 +5,12 @@ import { LoginDetails } from './interfaces/login-details';
 import { User } from './interfaces/user';
 import { Observable } from 'rxjs';
 import { AsyncPipe, CommonModule } from '@angular/common';
+import { RecipeSearchComponent } from './pages/search/recipe-search.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, RecipeSearchComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

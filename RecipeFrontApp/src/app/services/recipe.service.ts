@@ -24,10 +24,10 @@ export class RecipeService {
 
 
   //get the recipe that match the searchterm.
-  getRecipes(searchTerm: string): Observable<RecipeResponse[]> {
+  getRecipes(searchTerm: string): Observable<any> {
     let quisineType = "American";
     let mealType = "Dinner";
     let url = `${this.baseUrl}&q=${searchTerm}&app_id=${this.app_id}&app_key=${this.app_key}&cuisineType=${quisineType}&mealType=${mealType}`;
-    return this.http.get<RecipeResponse[]>(url, this.httpOptions);
+    return this.http.get<any>(url, this.httpOptions);
   }
 }

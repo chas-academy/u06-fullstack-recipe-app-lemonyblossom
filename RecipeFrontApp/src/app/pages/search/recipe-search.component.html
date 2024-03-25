@@ -1,8 +1,7 @@
 <div class="search-container">
    <label for="searchTerm">Search for recipes:</label>
-   <input type="text" id="searchTerm" placeholder="Enter search term..." [value]="searchTerm"
-      (input)="searchTerm = $event.target.value">
-   <button (click)="searchRecipe()">Search</button>
+   <input type="text" id="searchTerm" placeholder="Enter search term..." [value]="searchTerm">
+   <button (click)="searchRecipeChicken()">Search</button>
 </div>
 
 <div *ngIf="recipes.length > 0" class="recipe-list">
@@ -23,3 +22,5 @@
 <div *ngIf="recipes.length === 0 && searchPerformed" class="no-recipes">
    <p>No recipes found for "{{ searchTerm }}"</p>
 </div>
+
+<button (click)="searchRecipeChicken">chicken here</button>

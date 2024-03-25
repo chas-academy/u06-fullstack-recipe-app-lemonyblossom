@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { User } from '../../interfaces/user';
+import { AuthService } from '../../services/auth.service';
+
 
 @Component({
   selector: 'app-profile',
@@ -9,8 +11,15 @@ import { User } from '../../interfaces/user';
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent {
-  üser: User;
+  user: User;
 
-  constructor(private auth)
-
+  constructor(private auth: AuthService) {
+    this.user = { id: -1, name: '', email: '', }
+  }
+  /* getUser() {
+    this.auth = getUser2().subscribe((res) => {
+      console.log(res[0]);
+      this.user = res[0];
+    })
+  } */
 }

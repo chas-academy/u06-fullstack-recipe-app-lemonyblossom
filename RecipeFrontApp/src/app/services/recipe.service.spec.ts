@@ -16,8 +16,12 @@ describe('RecipeService', () => {
     httpTestingController = TestBed.inject(HttpTestingController);
   });
 
+  afterEach(() => {
+    httpTestingController.verify(); // check ig no requests outstanding
+  });
 
-  it('should retrieve recipes from the API via GET', () => {
+
+  it('should retrieve recipes from API-EDAMAME by GET', () => {
     expect(service).toBeTruthy(); // checks that recipes are received
 
     const searchTerm = 'beef'; //example for searchterm
