@@ -6,11 +6,12 @@ import { User } from './interfaces/user';
 import { Observable } from 'rxjs';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { RecipeSearchComponent } from './pages/search/recipe-search.component';
+import { RecipeComponent } from './pages/recipe/recipe.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, RouterLinkActive, RecipeSearchComponent],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, RecipeSearchComponent, RecipeComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

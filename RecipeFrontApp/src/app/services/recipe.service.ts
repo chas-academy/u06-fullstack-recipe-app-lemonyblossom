@@ -9,7 +9,7 @@ import { RecipeResponse } from '../interfaces/recipe';
 export class RecipeService {
 
   private baseUrl = 'https://api.edamam.com/api/recipes/v2?type=public';
-  private app_id = 'e2206d13';
+  private app_id = 'e2706d13';
   private app_key = '74499ac92f2f41f8eb129213812c7a03';
 
 
@@ -25,9 +25,7 @@ export class RecipeService {
 
   //get the recipe that match the searchterm.
   getRecipes(searchTerm: string): Observable<any> {
-    let quisineType = "American";
-    let mealType = "Dinner";
-    let url = `${this.baseUrl}&q=${searchTerm}&app_id=${this.app_id}&app_key=${this.app_key}&cuisineType=${quisineType}&mealType=${mealType}`;
+    let url = this.baseUrl + '&q=' + searchTerm + '&app_id=' + this.app_id + '&app_key=' + this.app_key;
     return this.http.get<any>(url, this.httpOptions);
   }
 }

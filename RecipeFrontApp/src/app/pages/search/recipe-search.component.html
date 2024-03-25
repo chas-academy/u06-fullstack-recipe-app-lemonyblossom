@@ -4,23 +4,10 @@
    <button (click)="searchRecipeChicken()">Search</button>
 </div>
 
-<div *ngIf="recipes.length > 0" class="recipe-list">
-   <h2>Recipes</h2>
-   <ul>
-      <li *ngFor="let recipe of recipes">
-         <h3>{{ recipe.label }}</h3>
-         <img [src]="recipe.image" alt="Recipe Image">
-         <p>Total Time: {{ recipe.totalTime }}</p>
-         <p>Ingredients:</p>
-         <ul>
-            <li *ngFor="let ingredient of recipe.ingredientLines">{{ ingredient }}</li>
-         </ul>
-      </li>
-   </ul>
-</div>
-
-<div *ngIf="recipes.length === 0 && searchPerformed" class="no-recipes">
-   <p>No recipes found for "{{ searchTerm }}"</p>
-</div>
-
-<button (click)="searchRecipeChicken">chicken here</button>
+<button (click)="searchRecipeChicken()">chicken here</button>
+@for (recipe of recipes; track recipe){
+<h3>{{ recipe.label }}</h3>
+<img src=”{{recipe.image}}” alt="{{recipe.label}}">
+<p>Total Time: {{ recipe.totalTime }}</p>
+<p>Ingredients:{{recipe.ingredients}}</p>
+}@empty{<p>No recipes found for "{{ searchTerm }}"</p>}
