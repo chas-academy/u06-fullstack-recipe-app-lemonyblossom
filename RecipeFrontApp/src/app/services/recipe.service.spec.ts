@@ -1,16 +1,40 @@
 import { TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { RecipeService } from './recipe.service';
+import { RecipeResponse } from '../interfaces/recipe';
 
 describe('RecipeService', () => {
   let service: RecipeService;
+  let httpTestingController: HttpTestingController;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [RecipeService]
+    });
     service = TestBed.inject(RecipeService);
+    httpTestingController = TestBed.inject(HttpTestingController);
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+
+  it('should retrieve recipes from the API via GET', () => {
+    expect(service).toBeTruthy(); // checks that recipes are received
+
+    const searchTerm = 'beef'; //example for searchterm
+    const req = httpTestingController.expectOne(req => req.url.includes(searchTerm));
+    expect(req.request.method).toBe('GET');
+    req.flush([]); // Simulate an empty response (array)
+  });
+
+  it('should handle errors when retrieving recipes', () => {
+    const searchTerm = 'chicken';
+    const errorMessage = 'Error retrieving recipes';
+
+    service.getRecipes(searchTerm).subscribe(
+      () => fail('should have failed with an error'),
+      error => {
+        expect(error.message).toEqual(errorMessage);
+      }
+    );
   });
 });
