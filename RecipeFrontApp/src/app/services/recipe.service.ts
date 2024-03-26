@@ -7,9 +7,8 @@ import { RecipeResponse } from '../interfaces/recipe';
   providedIn: 'root'
 })
 export class RecipeService {
-
-  private baseUrl = 'https://api.edamam.com/api/recipes/v2?type=public';
   private app_id = 'e2706d13';
+  private baseUrl = 'https://api.edamam.com/api/recipes/v2?type=public';
   private app_key = '74499ac92f2f41f8eb129213812c7a03';
 
 

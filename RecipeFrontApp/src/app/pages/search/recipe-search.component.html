@@ -1,13 +1,13 @@
 <div class="search-container">
    <label for="searchTerm">Search for recipes:</label>
    <input type="text" id="searchTerm" placeholder="Enter search term..." [value]="searchTerm">
-   <button (click)="searchRecipeChicken()">Search</button>
-</div>
 
-<button (click)="searchRecipeChicken()">chicken here</button>
-@for (recipe of recipes; track recipe){
-<h3>{{ recipe.label }}</h3>
-<img src=”{{recipe.image}}” alt="{{recipe.label}}">
-<p>Total Time: {{ recipe.totalTime }}</p>
-<p>Ingredients:{{recipe.ingredients}}</p>
-}@empty{<p>No recipes found for "{{ searchTerm }}"</p>}
+
+   <button (click)="searchRecipeChicken()">chicken here</button>
+   @for (recipe of recipes; track recipe){
+   <h3>{{ recipe.label }}</h3>
+   <img src=”{{recipe.image}}” alt="{{recipe.label}}">
+   <p>Total Time: {{ recipe.totalTime }}</p>
+   <p>Ingredients:{{recipe.ingredients}}</p>
+   }@empty{<p>No recipes found for "{{ searchTerm }}"</p>}
+</div>
