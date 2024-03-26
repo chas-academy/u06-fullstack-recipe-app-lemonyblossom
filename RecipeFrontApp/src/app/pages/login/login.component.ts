@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { LoginDetails } from '../../interfaces/login-details';
-
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -14,8 +13,8 @@ export class LoginComponent {
 
   constructor(private auth: AuthService) {
     this.loginDetails = {
-      email: '',
-      password: '',
+      email: 'lilp@lilp.lilp',
+      password: 'lilplilp',
     };
   }
   login() {

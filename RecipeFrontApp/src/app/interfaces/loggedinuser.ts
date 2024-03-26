@@ -1,6 +1,5 @@
 import { User } from "./user";
-
-export interface Loggedinuser {
+export interface LoggedInUser {
    user: User | undefined;
    loginState: boolean;
 }
