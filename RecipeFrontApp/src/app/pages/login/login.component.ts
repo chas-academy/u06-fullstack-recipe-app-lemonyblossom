@@ -10,7 +10,6 @@ import { LoginDetails } from '../../interfaces/login-details';
 })
 export class LoginComponent {
   loginDetails: LoginDetails;
-  errorMess: string;
 
   constructor(private auth: AuthService) {
     this.loginDetails = {
@@ -20,17 +19,7 @@ export class LoginComponent {
   }
 
   login() {
-    this.auth.login(this.loginDetails)
-      .subscribe(
-        res => {
-          // Handle successful login (e.g., store token in local storage)
-          console.log('Login successful:', res);
-        },
-        error => {
-          // Handle login error
-          console.error('Login error:', error);
-          this.errorMess = 'Failed to login';
-        }
-      );
+    this.auth.login(this.loginDetails);
   }
 }
+

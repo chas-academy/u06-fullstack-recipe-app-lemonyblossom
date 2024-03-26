@@ -13,7 +13,7 @@ export class RecipeComponent implements OnInit {
 
   constructor(private route: ActivatedRoute) { }
 
-  //Sebbe
+  //Lektion, test this before commiting.
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.id = String(params.get('id'));

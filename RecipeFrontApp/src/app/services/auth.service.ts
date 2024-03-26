@@ -19,7 +19,7 @@ export class AuthService {
     }),
   };
   private loggedIn = new BehaviorSubject<LoggedInUser>({ user: undefined, loginState: false });
-  public loggedInUser$: Observable<LoggedInUser> = this.loggedIn.asObservable();
+  public loggedIn$: Observable<LoggedInUser> = this.loggedIn.asObservable();
 
 
   constructor(private http: HttpClient) { }
@@ -52,20 +52,12 @@ export class AuthService {
       })
   }
 
-  getCurrentUser() {
-    let user: User;
-    user = {
-      id: 0,
-      name: '',
-      email: '',
-    };
-    this.http
-      .get<User[]>(
-        this.baseUrl + 'getUser/' + this.loggedIn.value.user?.id,
-        this.httpOptions
-      )
-      .subscribe((res) => (user = res[0]));
-    return user;
+  getCurrentUser(): Observable<User> {
+    return this.http
+      .get<User>(this.baseUrl + 'getUser/' + this.loggedIn.value.user?.id, this.httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
   private handleError(error: HttpErrorResponse) {

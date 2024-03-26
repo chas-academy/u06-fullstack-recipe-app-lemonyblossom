@@ -5,9 +5,10 @@ import { Observable, pipe, tap } from 'rxjs';
 
 export const authGuard: CanActivateFn = (route, state) => {
 
-  const auth: AuthService = inject(AuthService);
-
-  console.log(auth.getLoginStatus());
-
-  return auth.getLoginStatus();
+  /*   const auth: AuthService = inject(AuthService);
+  
+    console.log(auth.getLoginStatus());
+  
+    return auth.getLoginStatus(); */
+  return true
 };

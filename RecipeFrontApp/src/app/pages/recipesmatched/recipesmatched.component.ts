@@ -1,44 +1,43 @@
-import { Component } from '@angular/core';
+/* import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RecipeService } from '../../services/recipe.service';
 import { RecipeResponse } from '../../interfaces/recipe';
+import { RecipeService } from '../../services/recipe.service';
 import { RecipeidformatterPipe } from '../../pipes/recipeidformatter.pipe';
 import { RouterLink } from '@angular/router';
+import { RecipeComponent } from '../recipe/recipe.component';
+/* import { HttpClient, HttpHeaders } from '@angular/common/http';
+ */
 
-@Component({
-  selector: 'app-recipe-search',
+/* @Component({
+  selector: 'app-recipesmatched',
   standalone: true,
   imports: [FormsModule, RouterLink, RecipeidformatterPipe],
-  templateUrl: './recipe-search.component.html',
-  styleUrl: './recipe-search.component.css'
+  templateUrl: './recipesmatched.component.html',
+  styleUrl: './recipesmatched.component.css'
 })
-
-export class RecipeSearchComponent {
-  searchTerm: string = '';
+export class RecipesMatchedComponent {
   recipes?: RecipeResponse[];
+
+  searchterm = "";
 
   constructor(private recipeService: RecipeService) { }
 
   searchRecipe() {
-    this.recipeService.getRecipes(this.searchTerm).subscribe((res) => {
+    this.recipeService.getRecipes(this.searchterm).subscribe((res) => {
       console.log(res);
-
       let recipes: RecipeResponse[];
-      recipes = res.hits;
-
-      recipes = res.hits.map((item: { recipe: { label: any; image: any; totalTime: any; }; _links: { self: { href: any; }; }; }) => {
-
+      recipes = res.hits.map((item: { recipe: { label: any; image: any; ingredientLines: any; totalTime: any; }; _links: { self: { href: any; }; }; }) => {
         return {
-          self: item._links.self.href,
           label: item.recipe.label,
           image: item.recipe.image,
           totalTime: item.recipe.totalTime,
           selfref: item._links.self.href,
+
         };
       });
       console.table(recipes);
       this.recipes = recipes;
     });
   }
-
 }
+  */
