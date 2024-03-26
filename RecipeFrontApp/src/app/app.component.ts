@@ -25,16 +25,4 @@ export class AppComponent {
     this.loggedIn$ = this.auth.loggedIn$;
   }
 
-  /*   loginDetails: LoginDetails = { email: '', password: '' };
-   */
-
-  /* login() {
-    this.auth.login(this.loginDetails);
-  }
-  logout() {
-    this.auth.logOut();
-  } */
 }
-
-
-//allt fluff ska ingå här

@@ -6,6 +6,10 @@ import { map } from 'rxjs/operators';
 import { LoggedInUser } from '../interfaces/loggedinuser';
 import { LoginDetails } from '../interfaces/login-details';
 
+interface RegisterDetails {
+
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,7 +22,10 @@ export class AuthService {
       'Content-Type': 'application/json'
     }),
   };
-  private loggedIn = new BehaviorSubject<LoggedInUser>({ user: undefined, loginState: false });
+  private loggedIn = new BehaviorSubject<LoggedInUser>({
+     user: undefined, 
+     loginState: false
+     });
   public loggedIn$: Observable<LoggedInUser> = this.loggedIn.asObservable();
 
 
