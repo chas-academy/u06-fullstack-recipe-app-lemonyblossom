@@ -23,7 +23,7 @@ export class RecipeSearchComponent {
   }
 
   searchRecipeChicken() {
-    this.recipeService.getRecipes('chicken').subscribe((res) => {
+    this.recipeService.getRecipes(this.searchTerm).subscribe((res) => {
       console.log(res);
 
       let recipeArray: any[];

@@ -1,0 +1,10 @@
+<p>allrecipes works!</p>
+
+@for(Recipe of recipes; track recipes){
+<article>
+   <h3>{{recipe.label}}</h3>
+   <img src="{{recipe.image}}" alt="{{recipe.label}}" width="200" />
+   <p>Time to cook: {{recipe.totalTime}}</p>
+   <p><a [routerLink]="['/recipe', recipes.selfref | recipeidformatter]">Go to recipe</a></p>
+</article>
+}@empty{<p>No recipes found for "{{ searchTerm }}"</p>}
