@@ -16,7 +16,10 @@ export class ProfileComponent {
   constructor(private auth: AuthService) {
     this.user = { id: -1, name: '', email: '', }
   }
-  /* getUser() {
+  /* 
+  switch to currentuser->
+  
+  getUser() {
     this.auth = getUser2().subscribe((res) => {
       console.log(res[0]);
       this.user = res[0];
