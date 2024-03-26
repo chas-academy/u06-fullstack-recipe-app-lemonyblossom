@@ -20,6 +20,7 @@ export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(false);
   loggedIn$ = this.loggedIn.asObservable();
 
+  //Denna url kommer ändras när vi deployar!!!
   private baseUrl = 'http://127.0.0.1:8000/api/';
 
   private httpOptions = {
@@ -31,9 +32,11 @@ export class AuthService {
   constructor(private http: HttpClient) {
   }
 
+  //only for me to see
   getLoginStatus() {
     return this.loggedIn.value;
   }
+
   private updateLoginState(loginState: boolean) {
     this.loggedIn.next(loginState);
   }
@@ -51,7 +54,7 @@ export class AuthService {
     this.http.post<ResultData>(this.baseUrl + 'logout', {}, this.httpOptions).pipe(
       catchError(this.handleError)).subscribe(result => {
         console.log(result);
-        this.updateLoginState(false);
+        this.updateLoginState(true);
         this.httpOptions.headers = this.httpOptions.headers.set('Authorization', "Bearer ");
       })
   }
@@ -62,14 +65,13 @@ export class AuthService {
 
   private handleError(error: HttpErrorResponse) {
     if (error.status === 404) {
-      // A client-side or network error occurred. Handle it accordingly.
+      // A client-side.
       console.error('An error occurred:', error.error);
     } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong.
+      // The backend.
       console.error(
         `Backend returned code ${error.status}, body was: `, error.error);
     }
-    return throwError(() => new Error('Something bad happened; please try again later.'));
+    return throwError(() => new Error('Something went wrong; please try again later.'));
   }
 }
