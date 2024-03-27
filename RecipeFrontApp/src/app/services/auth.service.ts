@@ -2,13 +2,10 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, catchError, throwError } from 'rxjs';
 import { User } from '../interfaces/user';
-import { map } from 'rxjs/operators';
 import { LoggedInUser } from '../interfaces/loggedinuser';
 import { LoginDetails } from '../interfaces/login-details';
-
-interface RegisterDetails {
-
-}
+import { Registeruserinfo } from '../interfaces/registeruserinfo';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +37,20 @@ export class AuthService {
     return this.loggedIn.value;
   }
 
+  /* register(registerDetails: Registeruserinfo): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl + 'register',registerDetails}/register`, registerDetails);
+  }
+ */
+
+  register(registerDetails: Registeruserinfo): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/register`, registerDetails).pipe(
+      tap({
+        next: () => console.info('Registration successful'),
+        error: (error) => console.error('Error registering user:', error),
+        complete: () => console.info('You are now registrated!')
+      })
+    );
+  }
 
   loginUser(loginDetails: LoginDetails) {
     this.http.post<any>(this.baseUrl + 'login', loginDetails, this.httpOptions).pipe(

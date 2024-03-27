@@ -1,11 +1,8 @@
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { AuthService } from './services/auth.service';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { LoggedInUser } from './interfaces/loggedinuser';
 import { LoginComponent } from './pages/login/login.component';
-/* import { LoginDetails } from './interfaces/login-details';
- */
 import { Observable } from 'rxjs';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 

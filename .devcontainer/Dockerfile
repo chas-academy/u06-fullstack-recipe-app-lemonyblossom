@@ -9,3 +9,15 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
+
+FROM richarvey/nginx-php-fpm:3.1.6
+# Copy all application code into your Docker container
+COPY . .
+RUN apk update
+# Install the `npm` package
+RUN apk add --no-cache npm
+# Install NPM dependencies
+RUN npm install
+# Build Vite assets
+RUN npm run build
+CMD ["/start.sh"]
