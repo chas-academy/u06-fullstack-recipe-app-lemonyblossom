@@ -1,18 +1,18 @@
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { AuthService } from './services/auth.service';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { LoggedInUser } from './interfaces/loggedinuser';
 import { LoginComponent } from './pages/login/login.component';
 /* import { LoginDetails } from './interfaces/login-details';
  */
 import { Observable } from 'rxjs';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { RecipeSearchComponent } from './pages/search/recipe-search.component';
-import { RecipeComponent } from './pages/recipe/recipe.component';
+
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive, RecipeSearchComponent, RecipeComponent, AsyncPipe, LoginComponent],
+  imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive, AsyncPipe, LoginComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

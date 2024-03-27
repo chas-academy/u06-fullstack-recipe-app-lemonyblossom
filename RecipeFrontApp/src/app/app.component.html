@@ -3,7 +3,7 @@
   <!--Sebbe-->
   <nav>
     <ul>
-      <li><a routerLink="" routerLinkActive="active" ariaCurrentWhenActive="page">Search</a></li>
+      <li><a routerLink="/search" routerLinkActive="active" ariaCurrentWhenActive="page">Search</a></li>
       @if((loggedIn$ | async)?.loginState ){
       <li><a routerLink="/profile" routerLinkActive="active" ariaCurrentWhenActive="page">Profile</a></li>
       <li>Logged in as {{(loggedIn$ | async)?.user?.name}}</li>
@@ -14,6 +14,6 @@
     </ul>
   </nav>
   <p>❤️Congratulations! Your app is running.❤️ </p>
-  <app-recipe-search></app-recipe-search>
+
 </main>
 <router-outlet />

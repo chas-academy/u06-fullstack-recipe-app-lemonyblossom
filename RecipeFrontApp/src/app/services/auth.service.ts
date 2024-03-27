@@ -22,17 +22,17 @@ export class AuthService {
       'Content-Type': 'application/json'
     }),
   };
-  private loggedIn = new BehaviorSubject<LoggedInUser>({
-     user: undefined, 
-     loginState: false
-     });
+  public loggedIn = new BehaviorSubject<LoggedInUser>({
+    user: undefined,
+    loginState: false
+  });
   public loggedIn$: Observable<LoggedInUser> = this.loggedIn.asObservable();
 
 
   constructor(private http: HttpClient) { }
 
-  private updateLoginState(loginState: boolean) {
-    this.loggedIn.next({ user: this.loggedIn.value.user, loginState: loginState });
+  private updateLoginState(loginState: LoggedInUser) {
+    this.loggedIn.next(loginState);
   }
 
   //only for me to see
@@ -41,11 +41,14 @@ export class AuthService {
   }
 
 
-  login(loginDetails: LoginDetails) {
+  loginUser(loginDetails: LoginDetails) {
     this.http.post<any>(this.baseUrl + 'login', loginDetails, this.httpOptions).pipe(
       catchError(this.handleError)).subscribe(result => {
         console.log(result);
-        this.updateLoginState(true);
+        this.updateLoginState({
+          user: result.user,
+          loginState: true,
+        });
         this.httpOptions.headers = this.httpOptions.headers.set('Authorization', "Bearer " + result.token);
       })
   }
@@ -54,7 +57,10 @@ export class AuthService {
     this.http.post<any>(this.baseUrl + 'logout', {}, this.httpOptions).pipe(
       catchError(this.handleError)).subscribe(result => {
         console.log(result);
-        this.updateLoginState(false);
+        this.updateLoginState({
+          user: undefined,
+          loginState: false,
+        });
         this.httpOptions.headers = this.httpOptions.headers.set('Authorization', "Bearer ");
       })
   }
