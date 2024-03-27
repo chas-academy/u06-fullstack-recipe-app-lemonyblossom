@@ -22,7 +22,10 @@ export class LoginComponent {
   }
 
   login() {
-    this.auth.loginUser(this.loginDetails);
+    this.auth.logIn(this.loginDetails);
+  }
+  logOut() {
+    return this.auth.logOut();
   }
 }
 

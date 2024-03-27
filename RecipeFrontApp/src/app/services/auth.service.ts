@@ -6,6 +6,7 @@ import { LoggedInUser } from '../interfaces/loggedinuser';
 import { LoginDetails } from '../interfaces/login-details';
 import { Registeruserinfo } from '../interfaces/registeruserinfo';
 import { tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -28,53 +29,43 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  private updateLoginState(loginState: LoggedInUser) {
+  updateLoginState(loginState: LoggedInUser) {
     this.loggedIn.next(loginState);
   }
 
   //only for me to see
   getLoginStatus() {
-    return this.loggedIn.value;
+/*     return this.loggedIn.value;
+ */    return this.loggedIn.value.loginState;
+
   }
 
-  /* register(registerDetails: Registeruserinfo): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl + 'register',registerDetails}/register`, registerDetails);
-  }
- */
 
-  register(registerDetails: Registeruserinfo): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/register`, registerDetails).pipe(
-      tap({
-        next: () => console.info('Registration successful'),
-        error: (error) => console.error('Error registering user:', error),
-        complete: () => console.info('You are now registrated!')
-      })
-    );
-  }
-
-  loginUser(loginDetails: LoginDetails) {
+  logIn(loginDetails: LoginDetails) {
     this.http.post<any>(this.baseUrl + 'login', loginDetails, this.httpOptions).pipe(
-      catchError(this.handleError)).subscribe(result => {
-        console.log(result);
+      catchError(this.handleError)).subscribe(res => {
+        console.log(res);
         this.updateLoginState({
-          user: result.user,
+          user: res.user,
           loginState: true,
         });
-        this.httpOptions.headers = this.httpOptions.headers.set('Authorization', "Bearer " + result.token);
+        this.httpOptions.headers = this.httpOptions.headers.set('Authorization', "Bearer " + res.token);
       })
   }
 
   logOut() {
     this.http.post<any>(this.baseUrl + 'logout', {}, this.httpOptions).pipe(
-      catchError(this.handleError)).subscribe(result => {
-        console.log(result);
+      catchError(this.handleError)).subscribe(res => {
+        console.log(res);
         this.updateLoginState({
           user: undefined,
           loginState: false,
         });
-        this.httpOptions.headers = this.httpOptions.headers.set('Authorization', "Bearer ");
+        const token = localStorage.getItem("token") || '';
+        this.httpOptions.headers = this.httpOptions.headers.set('Authorization', "Bearer " + token);
       })
   }
+
 
   getCurrentUser(): Observable<User> {
     return this.http
@@ -95,4 +86,32 @@ export class AuthService {
     }
     return throwError(() => new Error('Something went wrong; Try again later.'));
   }
+
+
+  /*  register(registerDetails: Registeruserinfo) {
+     this.http.post<any>(this.baseUrl + 'register', registerDetails, this.httpOptions).pipe(
+       catchError(this.handleError)).subscribe(result => {
+         console.log(result);
+       })
+   } */
+
+  register(registerDetails: any): Observable<any> {
+    return this.http
+      .post<any>(
+        this.baseUrl + 'register',
+        registerDetails,
+        this.httpOptions
+      )
+      .pipe(catchError(this.handleError));
+  }
+
+  /*  register(registerDetails: Registeruserinfo): Observable<any> {
+  return this.http.post<any>(`${this.baseUrl}/register`, registerDetails).pipe(
+    tap({
+      next: () => console.info('Registration successful'),
+      error: (error) => console.error('Error registering user:', error),
+      complete: () => console.info('Registration process completed')
+    })
+  );
+} */
 }
