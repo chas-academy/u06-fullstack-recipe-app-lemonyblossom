@@ -7,9 +7,9 @@ import { RecipeResponse } from '../interfaces/recipe';
   providedIn: 'root'
 })
 export class RecipeService {
-  private app_id = 'e2706d13';
+  private app_id = '857ad764';
   private baseUrl = 'https://api.edamam.com/api/recipes/v2?type=public';
-  private app_key = '74499ac92f2f41f8eb129213812c7a03';
+  private app_key = '682012f9d9137867032989ab2a094cfb';
 
 
   private httpOptions = {
@@ -23,8 +23,17 @@ export class RecipeService {
 
 
   //get the recipe that match the searchterm.
-  getRecipes(searchTerm: string): Observable<any> {
+  getRecipes(searchTerm = "", cuisineType = "", mealType = "", dishType = ""): Observable<any> {
     let url = this.baseUrl + '&q=' + searchTerm + '&app_id=' + this.app_id + '&app_key=' + this.app_key;
+    if (cuisineType) {
+      url += "&cuisine_type=" + cuisineType;
+    }
+    if (mealType) {
+      url += "&mealType=" + mealType;
+    }
+    if (dishType) {
+      url += "&dishType=" + dishType;
+    }
     return this.http.get<any>(url, this.httpOptions);
   }
 }

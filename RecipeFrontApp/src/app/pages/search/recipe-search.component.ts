@@ -14,7 +14,7 @@ import { RouterLink } from '@angular/router';
 })
 
 export class RecipeSearchComponent {
-  searchTerm: string = '';
+  searchTerm = '';
   recipes?: RecipeResponse[];
 
   constructor(private recipeService: RecipeService) { }
