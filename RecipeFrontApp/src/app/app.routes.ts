@@ -11,5 +11,6 @@ export const routes: Routes = [
    { path: 'recipe', component: RecipeComponent },
    { path: 'profile', component: ProfileComponent, canActivate: [authGuard] },
    { path: 'login', component: LoginComponent },
-   { path: 'register', component: RegisterComponent },
+/*    { path: 'logout', component: LoginComponent },
+ */   { path: 'register', component: RegisterComponent },
 ];

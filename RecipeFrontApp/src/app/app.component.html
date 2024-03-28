@@ -7,7 +7,7 @@
 
       @if((loggedIn$ | async)?.loginState ){
       <li><a routerLink="/profile" routerLinkActive="active" ariaCurrentWhenActive="page">Profile</a></li>
-      <li><a routerLink="/logout" routerLinkActive="active" ariaCurrentWhenActive="page">Logout</a></li>
+      <button (click)="logout()">Logout</button>
 
       <li>Logged in as {{(loggedIn$ | async)?.user?.name}}</li>
 
