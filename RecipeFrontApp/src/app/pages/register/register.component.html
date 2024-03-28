@@ -22,27 +22,30 @@
       <div>
          <label for="name">
             Username:
+            <input id="name" type="text" [(ngModel)]="registerForm.name" name="name" required>
          </label>
-         <input id="name" type="text" registerForm="name" required>
       </div>
 
       <div>
          <label for="email">
             Email:
+            <input id="email" type="email" [(ngModel)]="registerForm.email" name="email" required>
          </label>
-         <input id="email" type="email" registerForm="email" required>
       </div>
+
       <div>
          <label for="password">
             Password:
+            <input id="password" type="password" [(ngModel)]="registerForm.password" name="password" required>
          </label>
-         <input id="password" type="password" registerForm="password" required>
       </div>
+
       <div>
          <label for="password_confirmation">
             Confirm password:
+            <input id="password_confirmation" type="password" [(ngModel)]="registerForm.password_confirmation"
+               name="password_confirmation" required>
          </label>
-         <input id="password_confirmation" type="password" registerForm="password_confirmation" required>
       </div>
 
 

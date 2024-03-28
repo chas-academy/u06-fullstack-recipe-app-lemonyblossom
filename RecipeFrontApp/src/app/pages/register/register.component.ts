@@ -19,19 +19,28 @@ import { Registeruserinfo } from '../../interfaces/registeruserinfo';
 export class RegisterComponent {
   constructor(private auth: AuthService) { }
 
-  registerForm = new FormGroup({
+  registerForm = {
+    name: '',
+    email: '',
+    password: '',
+    password_confirmation: '',
+  }
+
+  /* registerForm = new FormGroup({
     name: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
     password_confirmation: new FormControl('', Validators.required),
-  });
+  }); */
 
   register() {
-    const userData = this.registerForm.value;
+    const userData = this.registerForm;
+    console.log(this.registerForm);
     this.auth
       .register(userData as Registeruserinfo)
       .subscribe(res => {
         console.log('User registered', res);
       });
+
   }
 }
