@@ -1,10 +1,12 @@
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { AuthService } from './services/auth.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LoggedInUser } from './interfaces/loggedinuser';
 import { LoginComponent } from './pages/login/login.component';
 import { Observable } from 'rxjs';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { RecipeService } from './services/recipe.service';
+import { RecipeResponse } from './interfaces/recipe';
 
 @Component({
   selector: 'app-root',
@@ -14,15 +16,35 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
   styleUrl: './app.component.css'
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'RecipeFrontApp';
+  recipes: RecipeResponse[] = [];
   loggedIn$: Observable<LoggedInUser>;
 
-  constructor(private auth: AuthService) {
+  constructor(private auth: AuthService, private recipeService: RecipeService) {
     this.loggedIn$ = this.auth.loggedIn$;
+
   }
+
+  ngOnInit(): void {
+    this.getAllRecipes();
+  }
+
+  getAllRecipes() {
+    this.recipeService.getAllRecipes().subscribe(
+      (recipes: RecipeResponse[]) => {
+        this.recipes = recipes;
+      },
+      (error) => {
+        console.error('Error fetching recipes:', error);
+      }
+    );
+  }
+
   logout() {
     this.auth.logOut();
   }
 }
+
+
 

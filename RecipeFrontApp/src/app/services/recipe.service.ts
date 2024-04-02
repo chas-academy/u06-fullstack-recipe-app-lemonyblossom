@@ -23,7 +23,7 @@ export class RecipeService {
 
 
   //get the recipe that match the searchterm.
-  getRecipes(searchTerm = "", cuisineType = "", mealType = "", dishType = ""): Observable<any> {
+  getRecipe(searchTerm = "", cuisineType = "", mealType = "", dishType = ""): Observable<RecipeResponse> {
     let url = this.baseUrl + '&q=' + searchTerm + '&app_id=' + this.app_id + '&app_key=' + this.app_key;
     if (cuisineType) {
       url += "&cuisine_type=" + cuisineType;

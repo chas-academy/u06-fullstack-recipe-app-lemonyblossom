@@ -10,7 +10,7 @@
       <h3>{{recipe.label}}</h3>
       <img src="{{recipe.image}}" width="200" />
       <p>Time to cook: {{recipe.totalTime}}</p>
-      <p><a [routerLink]="['/recipe', recipe.selfref | recipeidformatter]">Go to recipe</a></p>
+      <p><a [routerLink]="['/recipe', recipe.selfref | recipeidformatter]">See details</a></p>
    </article>
    } @empty {<p>There are no recipes...</p>}
 </div>

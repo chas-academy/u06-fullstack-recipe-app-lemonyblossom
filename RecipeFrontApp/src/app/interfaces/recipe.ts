@@ -1,4 +1,6 @@
 export interface RecipeResponse {
+   hits: any;
+
    label: string;
    image: string;
    totalTime: number;
@@ -6,5 +8,6 @@ export interface RecipeResponse {
    mealType: string[];
    dietLabels: string[];
    selfref: string;
+
 }
 

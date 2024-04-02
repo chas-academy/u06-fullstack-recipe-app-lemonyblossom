@@ -20,16 +20,15 @@ export class RecipeSearchComponent {
   constructor(private recipeService: RecipeService) { }
 
   searchRecipe() {
-    this.recipeService.getRecipes(this.searchTerm).subscribe((res) => {
+    this.recipeService.getRecipe(this.searchTerm).subscribe((res) => {
       console.log(res);
 
       let recipes: RecipeResponse[];
-      recipes = res.hits;
 
-      recipes = res.hits.map((item: { recipe: { label: any; image: any; totalTime: any; }; _links: { self: { href: any; }; }; }) => {
+      recipes = res.hits.map((item: { recipe: { label: any; image: any; totalTime: any; }; _links: { self: { href: any; } }; }) => {
 
         return {
-          self: item._links.self.href,
+
           label: item.recipe.label,
           image: item.recipe.image,
           totalTime: item.recipe.totalTime,
