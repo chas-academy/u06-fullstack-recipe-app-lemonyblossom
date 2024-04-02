@@ -1,13 +1,15 @@
 export interface RecipeResponse {
-   hits: any;
-
    label: string;
    image: string;
+   ingredientLines?: string[];
    totalTime: number;
-   cuisineType: string[];
-   mealType: string[];
-   dietLabels: string[];
-   selfref: string;
-
+   yield?: number;
+   dietLabels?: string[];
+   cautions?: string[];
+   cuisineType?: string[];
+   mealType?: string[];
+   dishType?: string[];
+   instructions?: string;
+   tags?: string[];
+   self: string;
 }
-

@@ -1,17 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { ActivatedRoute, ParamMap, RouterLink } from '@angular/router';
+import { RecipeidformatterPipe } from '../../pipes/recipeidformatter.pipe';
 import { RecipeResponse } from '../../interfaces/recipe';
 import { RecipeService } from '../../services/recipe.service';
-
 @Component({
   selector: 'app-recipe',
   standalone: true,
+  imports: [RecipeidformatterPipe, CommonModule, RouterLink],
   templateUrl: './recipe.component.html',
   styleUrl: './recipe.component.css'
 })
-export class RecipeComponent {
+
+export class RecipeComponent implements OnInit {
   id?: string;
-  recipe?: RecipeResponse;
+  recipes: RecipeResponse[] = [];
 
 
   constructor(private route: ActivatedRoute,
@@ -19,7 +22,7 @@ export class RecipeComponent {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
-      this.id = String(params.get('id'));
+      this.id = params.get('id') ?? '';
       console.log(this.id);
       if (this.id) {
         this.getRecipeById();
@@ -28,40 +31,30 @@ export class RecipeComponent {
   }
 
   getRecipeById() {
-    this.recipeService.getRecipe(this.id).subscribe((res) => {
-      console.table(res);
+    if (this.id) {
+      this.recipeService.getRecipeById(this.id).subscribe((res) => {
+        console.table(res);
 
-      let recipe: RecipeResponse = {
-        label: res.recipe.label,
-        image: res.recipe.image,
-        ingredientLines: res.recipe.ingredientLines,
-        totalTime: res.recipe.totalTime,
-        self: res._links.self.href,
-        yield: res.recipe.yield,
-        dietLabels: res.recipe.dietLabels,
-        cautions: res.recipe.cautions,
-        cuisineType: res.recipe.cuisineType,
-        mealType: res.recipe.mealType,
-        dishType: res.recipe.dishType,
-        instructions: res.recipe.instructions,
-        tags: res.recipe.tags,
-      };
-      console.table(recipe);
-      this.recipe = recipe;
-    });
-  }
-}
-
-
-/*     this.getAllRecipes();
- */
-
-/* getAllRecipes(): void {
-  this.recipeService.getAllRecipes().subscribe(
-    (recipes: RecipeResponse[]) => {
-      this.recipes = recipes;
-    },
-    (error) => {
-      console.error('Error fetching recipes:', error);
+        let recipe: RecipeResponse = {
+          label: res.label,
+          image: res.image,
+          ingredientLines: res.ingredientLines,
+          totalTime: res.totalTime,
+          yield: res.yield,
+          dietLabels: res.dietLabels,
+          cautions: res.cautions,
+          cuisineType: res.cuisineType,
+          mealType: res.mealType,
+          dishType: res.dishType,
+          instructions: res.instructions,
+          tags: res.tags,
+          self: res?.self,
+        };
+        console.table(recipe);
+        this.recipes = [recipe];
+      });
+    } else {
+      console.error('Recipe ID is not defined.');
     }
-  ); */
+  }
+}  

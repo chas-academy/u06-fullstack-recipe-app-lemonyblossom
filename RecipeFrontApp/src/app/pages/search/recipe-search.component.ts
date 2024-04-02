@@ -14,30 +14,39 @@ import { RouterLink } from '@angular/router';
 })
 
 export class RecipeSearchComponent {
-  searchTerm = '';
-  recipes?: RecipeResponse[];
+  searchTerm: string = '';
+  recipes: RecipeResponse[] = [];
 
   constructor(private recipeService: RecipeService) { }
 
-  searchRecipe() {
-    this.recipeService.getRecipe(this.searchTerm).subscribe((res) => {
-      console.log(res);
+  searchRecipes() {
+    this.recipeService.searchRecipes(this.searchTerm).subscribe((res) => {
+      console.table(res);
 
       let recipes: RecipeResponse[];
-
-      recipes = res.hits.map((item: { recipe: { label: any; image: any; totalTime: any; }; _links: { self: { href: any; } }; }) => {
-
-        return {
-
-          label: item.recipe.label,
-          image: item.recipe.image,
-          totalTime: item.recipe.totalTime,
-          selfref: item._links.self.href,
-        };
-      });
-      console.table(recipes);
+      recipes = res.hits.map(
+        (item: {
+          recipe: {
+            label: any;
+            image: any;
+            ingredientLines: any;
+            totalTime: any;
+            yield: any;
+          };
+          _links: { self: { href: any } };
+        }) => {
+          return {
+            label: item.recipe.label,
+            image: item.recipe.image,
+            ingredientLines: item.recipe.ingredientLines,
+            totalTime: item.recipe.totalTime,
+            yield: item.recipe.yield,
+            self: item._links.self.href,
+          };
+        }
+      );
+      console.log(recipes);
       this.recipes = recipes;
     });
   }
-
 }

@@ -2,15 +2,14 @@
    <label for="searchTerm">Search for recipes:</label>
    <input type="text" id="searchTerm" placeholder="Enter search term..." [(ngModel)]="searchTerm">
 
-
-   <button (click)="searchRecipe()">Get Recipes</button>
+   <button (click)="searchRecipes()">Get Recipes</button>
 
    @for(recipe of recipes; track recipe){
    <article>
       <h3>{{recipe.label}}</h3>
       <img src="{{recipe.image}}" width="200" />
       <p>Time to cook: {{recipe.totalTime}}</p>
-      <p><a [routerLink]="['/recipe', recipe.selfref | recipeidformatter]">See details</a></p>
+      <p><a [routerLink]="['/recipe', recipe.self | recipeidformatter]">Go to recipe</a></p>
    </article>
-   } @empty {<p>There are no recipes...</p>}
+   } @empty {<p>inga recept här inte.....</p>}
 </div>
