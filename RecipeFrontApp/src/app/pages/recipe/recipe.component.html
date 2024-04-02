@@ -1,8 +1,48 @@
+<!-- @for (recipe of recipes; track recipe) {
 <article>
-   <h3>{{recipe.label}}</h3>
-   <img src="{{recipe.image}}" width="200" />
-   <p>Time to cook: {{recipe.totalTime}}</p>
-</article>
+   <h3>{{ recipe.label }}</h3>
+   <div class="recipes-image">
+      <img src="{{ recipe.image }}" alt="{{ recipe.label }}" fill />
+   </div>
 
-{{id}}
-<h1> Hej kom och hjälp mig!!!</h1>
+   @if (recipe.totalTime != 0) {
+   <p>Time: {{ recipe.totalTime }}</p>
+   } @if (recipe.yield) {
+   <p>Portions: {{ recipe.yield }}</p>
+   }
+
+   <p>
+      <a [routerLink]="['/recipe', recipe.self | recipeidformatter]">Go to recipe</a>
+   </p>
+</article>
+} @empty {
+<p>There are no recipes of this kind.</p>
+} -->
+<article>
+   <h2>{{ recipe.label }}</h2>
+   <br />
+   <img src="{{ recipe?.image }}" alt="{{ recipe?.label }}" />
+   <br />
+   <strong>This food contains: </strong>
+   <p>{{ recipe?.cautions }}</p>
+   <br />
+   <strong>Ingredients:</strong>
+   <br />
+   <ul>
+      @for (line of recipe?.ingredientLines; track line) {
+      <li>{{ line }}</li>
+      }
+   </ul>
+   <strong>Cooking time: </strong>
+   <p>{{ recipe?.totalTime }} minutes</p>
+   <br />
+   <strong>Global Kitchen:</strong>
+   <p class="tags">{{ recipe?.cuisineType }}</p>
+   <br />
+   <strong>Type of meal:</strong>
+   <p class="tags">{{ recipe?.mealType }}</p>
+   <p class="tags">{{ recipe?.dishType }}</p>
+
+   <p class="tags">{{ recipe?.instructions }}</p>
+   <p class="tags">{{ recipe?.tags }}</p>
+</article>

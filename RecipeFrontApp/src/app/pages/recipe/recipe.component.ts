@@ -14,7 +14,7 @@ import { RecipeService } from '../../services/recipe.service';
 
 export class RecipeComponent implements OnInit {
   id?: string;
-  recipes: RecipeResponse[] = [];
+  recipe?: RecipeResponse;
 
 
   constructor(private route: ActivatedRoute,
@@ -31,30 +31,26 @@ export class RecipeComponent implements OnInit {
   }
 
   getRecipeById() {
-    if (this.id) {
-      this.recipeService.getRecipeById(this.id).subscribe((res) => {
-        console.table(res);
+    this.recipeService.getRecipeById(this.id).subscribe((res) => {
+      console.table(res);
 
-        let recipe: RecipeResponse = {
-          label: res.label,
-          image: res.image,
-          ingredientLines: res.ingredientLines,
-          totalTime: res.totalTime,
-          yield: res.yield,
-          dietLabels: res.dietLabels,
-          cautions: res.cautions,
-          cuisineType: res.cuisineType,
-          mealType: res.mealType,
-          dishType: res.dishType,
-          instructions: res.instructions,
-          tags: res.tags,
-          self: res?.self,
-        };
-        console.table(recipe);
-        this.recipes = [recipe];
-      });
-    } else {
-      console.error('Recipe ID is not defined.');
-    }
+      let recipe: RecipeResponse = {
+        label: res.recipe.label,
+        image: res.recipe.image,
+        ingredientLines: res.recipe.ngredientLines,
+        totalTime: res.recipe.totalTime,
+        yield: res.recipe.yield,
+        dietLabels: res.recipe.dietLabels,
+        cautions: res.recipe.cautions,
+        cuisineType: res.recipe.cuisineType,
+        mealType: res.recipe.mealType,
+        dishType: res.recipe.dishType,
+        instructions: res.recipe.instructions,
+        tags: res.recipe.tags,
+        self: res?.self,
+      };
+      console.table(recipe);
+      this.recipe = recipe;
+    });
   }
-}  
+}

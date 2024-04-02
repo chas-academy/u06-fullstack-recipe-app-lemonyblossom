@@ -1,6 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, } from '@angular/core';
-import { catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { RecipeResponse } from '../interfaces/recipe';
 
@@ -9,8 +8,8 @@ import { RecipeResponse } from '../interfaces/recipe';
 })
 export class RecipeService {
   private baseUrl = 'https://api.edamam.com/api/recipes/v2?type=public';
-  private app_key = '74499ac92f2f41f8eb129213812c7a03';
-  private app_id = 'e2706d13';
+  private app_key = 'a83c1ac4413b17fea8fd10ce1a93dd53';
+  private app_id = '857ad764';
 
   private httOptions = {
     headers: new HttpHeaders({
@@ -41,7 +40,7 @@ export class RecipeService {
 
   getRecipeById(id?: string): Observable<any> {
     let url =
-      'https://api.edamam.com/api/recipe/v2/' +
+      'https://api.edamam.com/api/recipes/v2/' +
       id +
       '?type=public' +
       '&app_id=' +

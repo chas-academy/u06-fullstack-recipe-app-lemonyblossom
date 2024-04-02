@@ -88,13 +88,6 @@ export class AuthService {
   }
 
 
-  /*  register(registerDetails: Registeruserinfo) {
-     this.http.post<any>(this.baseUrl + 'register', registerDetails, this.httpOptions).pipe(
-       catchError(this.handleError)).subscribe(result => {
-         console.log(result);
-       })
-   } */
-
   register(registerDetails: any): Observable<any> {
     return this.http
       .post<any>(
@@ -105,13 +98,5 @@ export class AuthService {
       .pipe(catchError(this.handleError));
   }
 
-  /*  register(registerDetails: Registeruserinfo): Observable<any> {
-  return this.http.post<any>(`${this.baseUrl}/register`, registerDetails).pipe(
-    tap({
-      next: () => console.info('Registration successful'),
-      error: (error) => console.error('Error registering user:', error),
-      complete: () => console.info('Registration process completed')
-    })
-  );
-} */
+
 }

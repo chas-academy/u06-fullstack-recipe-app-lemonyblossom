@@ -27,18 +27,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAllRecipes();
-  }
 
-  getAllRecipes() {
-    this.recipeService.getAllRecipes().subscribe(
-      (recipes: RecipeResponse[]) => {
-        this.recipes = recipes;
-      },
-      (error) => {
-        console.error('Error fetching recipes:', error);
-      }
-    );
   }
 
   logout() {
