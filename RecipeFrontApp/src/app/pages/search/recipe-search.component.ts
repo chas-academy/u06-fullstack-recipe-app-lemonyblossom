@@ -16,13 +16,13 @@ import { RouterLink } from '@angular/router';
 export class RecipeSearchComponent {
   searchTerm: string = '';
   recipes: RecipeResponse[] = [];
-
+  activesearch = false;
   constructor(private recipeService: RecipeService) { }
 
   searchRecipes() {
     this.recipeService.searchRecipes(this.searchTerm).subscribe((res) => {
       console.table(res);
-
+      this.activesearch = true;
       let recipes: RecipeResponse[];
       recipes = res.hits.map(
         (item: {

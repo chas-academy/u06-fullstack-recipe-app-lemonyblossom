@@ -1,15 +1,32 @@
-<div class="search-container">
-   <label for="searchTerm">Search for recipes:</label>
-   <input type="text" id="searchTerm" placeholder="Enter search term..." [(ngModel)]="searchTerm">
+<div class=" flex flex-col items-center justify-center h-dvh mt-2">
+   <div class="search-container mt-11">
+      <label for="searchTerm" class="text-yellow-700 mt-2 m-2">Search for recipes:</label>
+      <input type="text" id="searchTerm" placeholder="Enter search term..." [(ngModel)]="searchTerm"
+         class="border-2 border-yellow-700 rounded-md px-2 py-1">
 
-   <button (click)="searchRecipes()">Get Recipes</button>
+      <button (click)="searchRecipes()"
+         class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded mt-2 m-2">
+         Get Recipes
+      </button>
+      @if(!activesearch){
+      <p class="text-center text-lg text-lime-700 mt-4 font-bold">Search to discover delicious recipes!</p>
+      }
+   </div>
 
-   @for(recipe of recipes; track recipe){
-   <article>
-      <h3>{{recipe.label}}</h3>
-      <img src="{{recipe.image}}" width="200" />
-      <p>Time to cook: {{recipe.totalTime}}</p>
-      <p><a [routerLink]="['/recipe', recipe.self | recipeidformatter]">Go to recipe</a></p>
-   </article>
-   } @empty {<p>inga recept här inte.....</p>}
+   <div class="h-dvh grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-2">
+      @for(recipe of recipes; track recipe)
+      {
+      <article class="bg-white rounded-lg shadow-md p-4">
+         <img src="{{recipe.image}}" width="200" class="mb-2" />
+         <h3 class="text-lg font-semibold mb-2">{{recipe.label}}</h3>
+         <p>Time to cook: {{recipe.totalTime}}</p>
+         <p><a [routerLink]="['/recipe', recipe.self | recipeidformatter]"
+               class="text-amber-500 hover:text-amber-600 font-bold">Go to recipe</a></p>
+      </article>
+      }
+      <!--  @empty
+      {
+      <p class="text-center text-lg text-lime-700 mt-4 font-bold">Search to discover delicious recipes!</p>
+      } -->
+   </div>
 </div>
