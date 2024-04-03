@@ -17,7 +17,7 @@ import { RecipeResponse } from './interfaces/recipe';
 })
 
 export class AppComponent implements OnInit {
-  title = 'RecipeFrontApp';
+  title = "What's Cookin'?";
   recipes: RecipeResponse[] = [];
   loggedIn$: Observable<LoggedInUser>;
 

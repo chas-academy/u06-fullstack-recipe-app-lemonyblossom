@@ -1,28 +1,28 @@
-<main class="main flex flex-col items-center justify-center h-screen">
-  <h1 class="text-3xl font-bold mb-8">{{ title }}</h1>
-
-  <nav class="flex gap-4">
+<nav class="flex flex-wrap items-center justify-between gap-4 fixed top-0 w-full bg-white shadow-md z-10 px-4 py-2">
+  <h1 class="text-3xl font-bold"> {{ title }} </h1>
+  <div class="flex gap-4">
     <button routerLink="/search" routerLinkActive="active" ariaCurrentWhenActive="page"
-      class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded mt-2 m-2">Search</button>
+      class="bg-amber-500 hover:bg-amber-400 text-white font-bold py-2 px-4 rounded mt-2 m-2">Search</button>
 
-    @if((loggedIn$ | async)?.loginState ){
+    @if((loggedIn$ | async)?.loginState )
+    {
     <button routerLink="/profile" routerLinkActive="active" ariaCurrentWhenActive="page"
-      class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded mt-2 m-2">Profile</button>
+      class="bg-amber-500 hover:bg-amber-400 text-white font-bold py-2 px-4 rounded mt-2 m-2">Profile</button>
     <button (click)="logout()"
-      class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded mt-2 m-2">Logout</button>
+      class="bg-amber-500 hover:bg-amber-400 text-white font-bold py-2 px-4 rounded mt-2 m-2">Logout</button>
 
-    <span class="ml-4">Logged in as {{(loggedIn$ | async)?.user?.name}}</span>
-
-
-    } @else {
-    <button routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page"
-      class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded mt-2 m-2">Login</button>
-    <button routerLink="/register" routerLinkActive="active" ariaCurrentWhenActive="page"
-      class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded mt-2 m-2">Register</button>
+    <span class="mt-2">Logged in as {{(loggedIn$ | async)?.user?.name}}</span>
     }
-
-  </nav>
-  <!--   <p class="text-2xl mt-8">❤️ Congratulations! Your app is running. ❤️</p> -->
-
+    @else
+    {
+    <button routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page"
+      class="bg-amber-500 hover:bg-amber-400 text-white font-bold py-2 px-4 rounded mt-2 m-2">Login</button>
+    <button routerLink="/register" routerLinkActive="active" ariaCurrentWhenActive="page"
+      class="bg-amber-500 hover:bg-amber-400 text-white font-bold py-2 px-4 rounded mt-2 m-2">Register</button>
+    }
+  </div>
+</nav>
+<main class="main  bg-lime-100 flex flex-col items-center justify-center mt-16">
+  <!-- Your main content goes here -->
   <router-outlet />
 </main>
