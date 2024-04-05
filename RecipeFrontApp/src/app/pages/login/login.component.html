@@ -1,16 +1,24 @@
-<p>login works! Or does it??</p>
+<div class="form-container h-screen">
+   <div class="login-form bg-white p-6 rounded-md shadow-md mt-4">
+      <h2 class="text-2xl font-bold mb-4">Login</h2>
+      <form (ngSubmit)="login()" class="flex flex-col gap-4">
+         <div class="form-group">
+            <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
+            <input type="email" id="email" name="email" [(ngModel)]="loginDetails.email" required
+               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-amber-400 focus:shadow-outline">
+         </div>
+         <div class="form-group">
+            <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Password:</label>
+            <input type="password" id="password" name="password" [(ngModel)]="loginDetails.password" required
+               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-amber-400 focus:shadow-outline">
+         </div>
+         <button type="submit"
+            class="bg-amber-500 hover:bg-amber-400 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-amber-400">
+            Login
+         </button>
+      </form>
 
-<div class="login-container">
-   <h2>Login</h2>
-   <form (ngSubmit)="login()">
-      <div class="form-group">
-         <label for="email">Email:</label>
-         <input type="email" id="email" name="email" [(ngModel)]="loginDetails.email" required>
-      </div>
-      <div class="form-group">
-         <label for="password">Password:</label>
-         <input type="password" id="password" name="password" [(ngModel)]="loginDetails.password" required>
-      </div>
-      <button type="submit">Login</button>
-   </form>
+      <p class="mt-4 text-sm text-gray-700">Not registered? <a href="/register"
+            class="text-amber-500 hover:text-amber-400"> Register</a></p>
+   </div>
 </div>

@@ -1,56 +1,39 @@
-<p>register works!</p>
-<div class="register-container">
-   <h2>Register</h2>
-   <!--    <form (ngSubmit)="registerUser()">
-      <div class="form-group">
-         <label for="name">Username:</label>
-         <input type="name" id="name" name="name" [(ngModel)]="registerForm.name" required>
+<div class="form-container h-screen">
+   <div class="register-form bg-white p-6 rounded-md shadow-md mt-4 ">
+      <h2 class="text-2xl font-bold mb-4">Register</h2>
+      <form (ngSubmit)="register()" class="flex flex-col gap-4">
+         <div class="form-group">
+            <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Username:</label>
+            <input id="name" type="text" [(ngModel)]="registerForm.name" name="name" required
+               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-amber-400 focus:shadow-outline">
+         </div>
 
-         <label for="email">Email:</label>
-         <input type="email" id="email" name="email" [(ngModel)]="registerForm.email" required>
-      </div>
-      <div class="form-group">
-         <label for="password">Password:</label>
-         <input type="password" id="password" name="password" [(ngModel)]="registerForm.password" required>
-      </div>
-      <button type="submit">Register</button>
-   </form>
-</div> -->
+         <div class="form-group">
+            <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
+            <input id="email" type="email" [(ngModel)]="registerForm.email" name="email" required
+               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-amber-400 focus:shadow-outline">
+         </div>
 
-   <form (ngSubmit)="register()">
+         <div class="form-group">
+            <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Password:</label>
+            <input id="password" type="password" [(ngModel)]="registerForm.password" name="password" required
+               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-amber-400 focus:shadow-outline">
+         </div>
 
-      <div>
-         <label for="name">
-            Username:
-            <input id="name" type="text" [(ngModel)]="registerForm.name" name="name" required>
-         </label>
-      </div>
-
-      <div>
-         <label for="email">
-            Email:
-            <input id="email" type="email" [(ngModel)]="registerForm.email" name="email" required>
-         </label>
-      </div>
-
-      <div>
-         <label for="password">
-            Password:
-            <input id="password" type="password" [(ngModel)]="registerForm.password" name="password" required>
-         </label>
-      </div>
-
-      <div>
-         <label for="password_confirmation">
-            Confirm password:
+         <div class="form-group">
+            <label for="password_confirmation" class="block text-gray-700 text-sm font-bold mb-2">Confirm
+               password:</label>
             <input id="password_confirmation" type="password" [(ngModel)]="registerForm.password_confirmation"
-               name="password_confirmation" required>
-         </label>
-      </div>
+               name="password_confirmation" required
+               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-amber-400 focus:shadow-outline">
+         </div>
 
+         <button type="submit"
+            class="bg-amber-500 hover:bg-amber-400 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-amber-400">
+            Register
+         </button>
+      </form>
+      <p class="text-gray-700 text-sm mt-2">Already registered? <a href="/login"
+            class="text-amber-500 hover:underline">Login</a></p>
 
-
-      <button type="submit">Register</button>
-
-   </form>
-</div>
+   </div>
