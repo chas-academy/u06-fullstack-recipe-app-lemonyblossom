@@ -19,13 +19,6 @@ import { Registeruserinfo } from '../../interfaces/registeruserinfo';
 export class RegisterComponent {
   constructor(private auth: AuthService) { }
 
-  /*  registerForm = {
-     name: '',
-     email: '',
-     password: '',
-     password_confirmation: '',
-   } */
-
   registerForm = new FormGroup({
     name: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),

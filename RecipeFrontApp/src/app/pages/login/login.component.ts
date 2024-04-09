@@ -33,6 +33,10 @@ export class LoginComponent {
 
 
   login() {
+    this.loginDetails = {
+      email: this.loginForm.value.email || '',
+      password: this.loginForm.value.password || '',
+    }
     this.auth.logIn(this.loginDetails);
   }
   logOut() {
