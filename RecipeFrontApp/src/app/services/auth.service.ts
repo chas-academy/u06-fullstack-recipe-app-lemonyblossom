@@ -78,10 +78,10 @@ export class AuthService {
 
   private handleError(error: HttpErrorResponse) {
     if (error.status === 404) {
-      // A client-side.
+      //client-side
       console.error('An error occurred:', error.error);
     } else {
-      // The backend.
+      // The backend
       console.error(
         `Backend returned code ${error.status}`);
     }
