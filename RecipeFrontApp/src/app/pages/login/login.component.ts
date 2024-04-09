@@ -1,13 +1,19 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { LoginDetails } from '../../interfaces/login-details';
-import { FormsModule } from '@angular/forms';
+import {
+  FormGroup, FormControl,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+
 
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -20,6 +26,11 @@ export class LoginComponent {
       password: '',
     };
   }
+  loginForm = new FormGroup({
+    email: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
+  });
+
 
   login() {
     this.auth.logIn(this.loginDetails);
