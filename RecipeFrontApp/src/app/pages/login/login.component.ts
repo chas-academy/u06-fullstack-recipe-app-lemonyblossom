@@ -7,6 +7,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 
@@ -19,26 +20,42 @@ import {
 })
 export class LoginComponent {
   loginDetails: LoginDetails;
-
-  constructor(private auth: AuthService) {
-    this.loginDetails = {
-      email: '',
-      password: '',
-    };
-  }
   loginForm = new FormGroup({
     email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
   });
 
+  constructor(private auth: AuthService, private router: Router) {
+    this.loginDetails = {
+      email: '',
+      password: '',
+    };
+  }
 
-  login() {
+
+  /*  login() {
+     this.loginDetails = {
+       email: this.loginForm.value.email || '',
+       password: this.loginForm.value.password || '',
+     }
+     this.auth.logIn(this.loginDetails);
+   } */
+
+  async login() {
     this.loginDetails = {
       email: this.loginForm.value.email || '',
       password: this.loginForm.value.password || '',
+    };
+
+    try {
+      await this.auth.logIn(this.loginDetails);
+      this.router.navigateByUrl('/home');
+    } catch (error) {
+      console.error('Login failed:', error);
+      // Handle login error here (e.g., display error message)
     }
-    this.auth.logIn(this.loginDetails);
   }
+
   logOut() {
     return this.auth.logOut();
   }
