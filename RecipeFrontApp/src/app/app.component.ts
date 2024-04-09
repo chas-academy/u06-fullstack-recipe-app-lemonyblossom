@@ -5,7 +5,6 @@ import { LoggedInUser } from './interfaces/loggedinuser';
 import { LoginComponent } from './pages/login/login.component';
 import { Observable } from 'rxjs';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { RecipeService } from './services/recipe.service';
 import { RecipeResponse } from './interfaces/recipe';
 
 @Component({

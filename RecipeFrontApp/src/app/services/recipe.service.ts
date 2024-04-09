@@ -37,6 +37,25 @@ export class RecipeService {
       this.app_key;
     return this.http.get<any>(url, this.httOptions);
   }
+  fetchRecipes(dishType?: string): Observable<RecipeResponse[]> {
+    let searchTerm: string;
+
+    switch (dishType) {
+      case 'appetizer':
+        searchTerm = 'appetizer';
+        break;
+      case 'mainCourse':
+        searchTerm = 'main course';
+        break;
+      case 'dessert':
+        searchTerm = 'dessert';
+        break;
+      default:
+        searchTerm = '';
+    }
+
+    return this.searchRecipes(searchTerm);
+  }
 
   getRecipeById(id?: string): Observable<any> {
     let url =
@@ -49,4 +68,13 @@ export class RecipeService {
       this.app_key;
     return this.http.get<any>(url, this.httOptions);
   }
+  /*   getAppetizer(): Observable<RecipeResponse[]> {
+      return this.searchRecipes('', '', 'appetizer');
+    }
+    getMainCourse(): Observable<RecipeResponse[]> {
+      return this.searchRecipes('', '', 'main course');
+    }
+    getDessert(): Observable<RecipeResponse[]> {
+      return this.searchRecipes('', '', 'dessert');
+    } */
 }

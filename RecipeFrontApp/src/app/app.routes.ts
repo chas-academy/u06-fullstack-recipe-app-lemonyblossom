@@ -6,14 +6,15 @@ import { authGuard } from './guards/auth.guard';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { AppComponent } from './app.component';
+import { HomeComponent } from './pages/home/home.component';
 
 export const routes: Routes = [
   /*    { path: '', component: AppComponent },
    *//*    { path: 'recipe', component: RecipeComponent },
 */
-  /*   { path: 'home', component: AppComponent },
-   */  /*  { path: '', redirectTo: '/home', pathMatch: 'full' },
-    { path: '**', redirectTo: '/home' }, */
+  { path: '', component: HomeComponent },
+  /*  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', redirectTo: '/home' }, */
   { path: 'recipe/:id', component: RecipeComponent },
   { path: 'search', component: RecipeSearchComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [authGuard] },
