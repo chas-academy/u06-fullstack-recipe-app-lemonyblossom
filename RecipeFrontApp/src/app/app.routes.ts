@@ -11,9 +11,9 @@ export const routes: Routes = [
   /*    { path: '', component: AppComponent },
    *//*    { path: 'recipe', component: RecipeComponent },
 */
-  { path: 'home', component: AppComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: '**', redirectTo: '/home' },
+  /*   { path: 'home', component: AppComponent },
+   */  /*  { path: '', redirectTo: '/home', pathMatch: 'full' },
+    { path: '**', redirectTo: '/home' }, */
   { path: 'recipe/:id', component: RecipeComponent },
   { path: 'search', component: RecipeSearchComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [authGuard] },

@@ -49,7 +49,7 @@ export class LoginComponent {
 
     try {
       await this.auth.logIn(this.loginDetails);
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('/');
     } catch (error) {
       console.error('Login failed:', error);
       // Handle login error here (e.g., display error message)
