@@ -39,8 +39,7 @@ export class HomeComponent implements OnInit {
 
   getAppetizer() {
     this.recipeService.fetchRecipes("appetizer").subscribe(res => {
-      this.dishType = this.dishType;
-      console.table(res);
+      this.dishType.push(res[0]); console.table(res);
     });
 
   }

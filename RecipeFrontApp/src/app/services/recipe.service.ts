@@ -37,24 +37,39 @@ export class RecipeService {
       this.app_key;
     return this.http.get<any>(url, this.httOptions);
   }
-  fetchRecipes(dishType?: string): Observable<RecipeResponse[]> {
-    let searchTerm: string;
-
-    switch (dishType) {
-      case 'appetizer':
-        searchTerm = 'appetizer';
-        break;
-      case 'mainCourse':
-        searchTerm = 'main course';
-        break;
-      case 'dessert':
-        searchTerm = 'dessert';
-        break;
-      default:
-        searchTerm = '';
-    }
-
-    return this.searchRecipes(searchTerm);
+  /*   fetchRecipes(dishType?: string): Observable<RecipeResponse[]> {
+      let searchTerm: string;
+  
+      switch (dishType) {
+        case 'appetizer':
+          searchTerm = 'appetizer';
+          break;
+        case 'mainCourse':
+          searchTerm = 'main course';
+          break;
+        case 'dessert':
+          searchTerm = 'dessert';
+          break;
+        default:
+          searchTerm = '';
+      }
+  
+      return this.searchRecipes(searchTerm);
+    } */
+  fetchRecipes(
+    q: string,
+    dishType?: string
+  ): Observable<any> {
+    dishType = '';
+    let url =
+      this.baseUrl +
+      '&q=' +
+      q +
+      '&app_id=' +
+      this.app_id +
+      '&app_key=' +
+      this.app_key;
+    return this.http.get<any>(url, this.httOptions);
   }
 
   getRecipeById(id?: string): Observable<any> {
