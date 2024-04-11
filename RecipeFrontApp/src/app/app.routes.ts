@@ -9,12 +9,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 
 export const routes: Routes = [
-  /*    { path: '', component: AppComponent },
-   *//*    { path: 'recipe', component: RecipeComponent },
-*/
   { path: '', component: HomeComponent },
-  /*  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: '**', redirectTo: '/home' }, */
   { path: 'recipe/:id', component: RecipeComponent },
   { path: 'search', component: RecipeSearchComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [authGuard] },
