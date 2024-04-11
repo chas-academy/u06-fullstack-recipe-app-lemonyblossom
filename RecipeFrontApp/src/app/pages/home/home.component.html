@@ -1,48 +1,62 @@
 <div class="flex flex-col h-full mt-2">
    <div class="search-container mt-5 justify-center items-center">
-      <button (click)="fetchRecipes()"
+      <button (click)="fetchRecipeSuggestions()"
          class="bg-amber-500 hover:bg-amber-400 text-white font-bold py-2 px-4 rounded mt-2 m-2">
          Get another dinner Suggestion
       </button>
    </div>
 
-   @if(!activesearch){
+   <!--   @if(!activesearch){
    <p class="text-center text-lg text-lime-700 mt-4 font-bold">Search to discover delicious recipes!</p>
-   }
+   } -->
+
 
    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-2 overflow-y-auto">
-      <!-- Appetizer Grid Item -->
-      @for(recipe of dishType; track recipe){
+      <!-- Display only the first recipe from each category -->
+      <!-- Appetizer-->
       <div class="bg-white rounded-lg shadow-md p-4 flex flex-col justify-center">
-         <img [src]="recipe.image" width="200" class="mx-auto mb-2" />
-         <h3 class="text-lg font-semibold mb-2 text-center">{{recipe.label}}</h3>
-         <p class="text-center">Time to cook: {{recipe.totalTime}}</p>
-         <p class="text-center"><a [routerLink]="['/recipe', recipe.self | recipeidformatter]"
-               class="text-amber-500 hover:text-amber-400 font-bold">Go to recipe</a></p>
+         @if(appetizer.length > 0){
+         <img [src]="appetizer[0].image" width="200" class="mx-auto mb-2" />
+         <h3 class="text-lg font-semibold mb-2 text-center">{{ appetizer[0].label }}</h3>
+         <p class="text-center">Time to cook: {{ appetizer[0].totalTime }}</p>
+         <p class="text-center">
+            <a [routerLink]="['/recipe', appetizer[0].self | recipeidformatter]"
+               class="text-amber-500 hover:text-amber-400 font-bold">
+               Go to recipe
+            </a>
+         </p>
+         }
       </div>
-      }
 
-      <!-- Main Course Grid Item -->
-      @for(mainCourse of dishType; track mainCourse){
+      <!-- Main Course -->
       <div class="bg-white rounded-lg shadow-md p-4 flex flex-col justify-center">
-         <img [src]="mainCourse.image" width="200" class="mx-auto mb-2" />
-         <h3 class="text-lg font-semibold mb-2 text-center">{{mainCourse.label}}</h3>
-         <p class="text-center">Time to cook: {{mainCourse.totalTime}}</p>
-         <p class="text-center"><a [routerLink]="['/recipe', mainCourse.self | recipeidformatter]"
-               class="text-amber-500 hover:text-amber-400 font-bold">Go to recipe</a></p>
+         @if(mainCourse.length > 0){
+         <img [src]="mainCourse[0].image" width="200" class="mx-auto mb-2" />
+         <h3 class="text-lg font-semibold mb-2 text-center">{{ mainCourse[0].label }}</h3>
+         <p class="text-center">Time to cook: {{ mainCourse[0].totalTime }}</p>
+         <p class="text-center">
+            <a [routerLink]="['/recipe', mainCourse[0].self | recipeidformatter]"
+               class="text-amber-500 hover:text-amber-400 font-bold">
+               Go to recipe
+            </a>
+         </p>
+         }
       </div>
-      }
 
       <!-- Dessert Grid Item -->
-      @for(dessert of dishType; track dessert){
       <div class="bg-white rounded-lg shadow-md p-4 flex flex-col justify-center">
-         <img [src]="dessert.image" width="200" class="mx-auto mb-2" />
-         <h3 class="text-lg font-semibold mb-2 text-center">{{dessert.label}}</h3>
-         <p class="text-center">Time to cook: {{dessert.totalTime}}</p>
-         <p class="text-center"><a [routerLink]="['/recipe', dessert.self | recipeidformatter]"
-               class="text-amber-500 hover:text-amber-400 font-bold">Go to recipe</a></p>
-      </div>
-      }
-   </div>
 
+         @if(desserts.length > 0){
+         <img [src]="desserts[0].image" width="200" class="mx-auto mb-2" />
+         <h3 class="text-lg font-semibold mb-2 text-center">{{ desserts[0].label }}</h3>
+         <p class="text-center">Time to cook: {{ desserts[0].totalTime }}</p>
+         <p class="text-center">
+            <a [routerLink]="['/recipe', desserts[0].self | recipeidformatter]"
+               class="text-amber-500 hover:text-amber-400 font-bold">
+               Go to recipe
+            </a>
+         </p>
+         }
+      </div>
+   </div>
 </div>

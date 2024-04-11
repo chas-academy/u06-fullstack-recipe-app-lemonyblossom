@@ -1,58 +1,47 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { RecipeSearchComponent } from '../search/recipe-search.component';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { RecipeService } from '../../services/recipe.service';
 import { RecipeResponse } from '../../interfaces/recipe';
 import { RecipeidformatterPipe } from '../../pipes/recipeidformatter.pipe';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [FormsModule, RecipeidformatterPipe, RouterLink],
+  imports: [RouterLink, RecipeidformatterPipe],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 
 export class HomeComponent implements OnInit {
+  appetizer: RecipeResponse[] = [];
+  mainCourse: RecipeResponse[] = [];
+  desserts: RecipeResponse[] = [];
+  activesearch = false;
 
-  searchTerm: string;
-  activesearch: boolean;
-  dishType: RecipeResponse[];
 
   constructor(private recipeService: RecipeService) {
-    this.searchTerm = '';
-    this.activesearch = false;
-    this.dishType = [];
   }
 
   ngOnInit(): void {
-    this.fetchRecipes();
-    console.log('HomeComponent initialized');
+    this.fetchRecipeSuggestions();
   }
 
-  fetchRecipes() {
-    this.getAppetizer();
-    this.getMainCourse();
-    this.getDessert();
-  }
+  fetchRecipeSuggestions(): void {
+    this.recipeService.fetchRecipeSuggestions().subscribe((recipes) => {
+      console.log('Fetched recipes:', recipes);
+      if (Array.isArray(recipes) && recipes.length > 0) {
+        console.log('Array hits:', recipes);
 
-  getAppetizer() {
-    this.recipeService.fetchRecipes("appetizer").subscribe(res => {
-      this.dishType.push(res[0]); console.table(res);
-    });
+        this.appetizer = recipes.filter(recipe => recipe.dishType?.length === 1 && recipe.dishType.includes('starter'));
+        this.mainCourse = recipes.filter(recipe => recipe.dishType?.length === 1 && recipe.dishType.includes('main course'));
+        this.desserts = recipes.filter(recipe => recipe.dishType?.length === 1 && recipe.dishType.includes('desserts'));
 
-  }
-  getMainCourse() {
-    this.recipeService.fetchRecipes("main course").subscribe(res => {
-      this.dishType = this.dishType;
-      console.table(res);
-    });
-  }
-  getDessert() {
-    this.recipeService.fetchRecipes("dessert").subscribe(res => {
-      this.dishType = this.dishType;
-      console.table(res);
+        console.log('Appetizers:', this.appetizer);
+        console.log('Main Course:', this.mainCourse);
+        console.log('Desserts:', this.desserts);
+      } else {
+        console.log('No hits found');
+      }
     });
   }
 }
