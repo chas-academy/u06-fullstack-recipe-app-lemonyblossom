@@ -4,7 +4,6 @@ import { RecipeService } from '../../services/recipe.service';
 import { RecipeResponse } from '../../interfaces/recipe';
 import { RecipeidformatterPipe } from '../../pipes/recipeidformatter.pipe';
 import { RouterLink } from '@angular/router';
-
 @Component({
   selector: 'app-recipe-search',
   standalone: true,
@@ -20,7 +19,7 @@ export class RecipeSearchComponent {
   constructor(private recipeService: RecipeService) { }
 
   searchRecipes() {
-    this.recipeService.searchRecipes(this.searchTerm).subscribe((res) => {
+    this.recipeService.Recipes(this.searchTerm).subscribe((res) => {
       console.table(res);
       this.activesearch = true;
       let recipes: RecipeResponse[];
@@ -32,11 +31,13 @@ export class RecipeSearchComponent {
             ingredientLines: any;
             totalTime: any;
             yield: any;
+            dishType: any;
           };
           _links: { self: { href: any } };
         }) => {
           return {
             label: item.recipe.label,
+            dishType: item.recipe.dishType,
             image: item.recipe.image,
             ingredientLines: item.recipe.ingredientLines,
             totalTime: item.recipe.totalTime,

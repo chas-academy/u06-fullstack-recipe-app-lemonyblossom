@@ -34,7 +34,7 @@ describe('RecipeService', () => {
     const searchTerm = 'chicken';
     const errorMessage = 'Error retrieving recipes';
 
-    service.searchRecipes(searchTerm).subscribe(
+    service.Recipes(searchTerm).subscribe(
       () => fail('should have failed with an error'),
       error => {
         expect(error.message).toEqual(errorMessage);
