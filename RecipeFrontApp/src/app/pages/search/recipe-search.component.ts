@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RecipeService } from '../../services/recipe.service';
 import { RecipeResponse } from '../../interfaces/recipe';
@@ -12,16 +12,18 @@ import { RouterLink } from '@angular/router';
   styleUrl: './recipe-search.component.css'
 })
 
-export class RecipeSearchComponent {
-  searchTerm: string = '';
+export class RecipeSearchComponent implements OnInit {
+  searchTerm: string = 'Dinner';
   recipes: RecipeResponse[] = [];
-  activesearch = false;
-  constructor(private recipeService: RecipeService) { }
 
+
+  constructor(private recipeService: RecipeService) { }
+  ngOnInit(): void {
+    this.searchRecipes();
+  }
   searchRecipes() {
     this.recipeService.Recipes(this.searchTerm).subscribe((res) => {
       console.table(res);
-      this.activesearch = true;
       let recipes: RecipeResponse[];
       recipes = res.hits.map(
         (item: {

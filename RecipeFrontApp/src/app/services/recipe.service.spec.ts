@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { RecipeService } from './recipe.service';
-import { RecipeResponse } from '../interfaces/recipe';
 
 describe('RecipeService', () => {
   let service: RecipeService;

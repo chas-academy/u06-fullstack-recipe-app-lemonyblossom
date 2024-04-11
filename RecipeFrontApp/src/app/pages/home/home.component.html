@@ -1,22 +1,20 @@
-<div class="flex flex-col h-full mt-2">
+<div class="flex flex-col h-screen justify-center items-center p-2 mt-4">
+   <h2 class="text-4xl font-bold text-center text-white mb-4">
+      Stuck on dinner? We've got you!
+   </h2>
    <div class="search-container mt-5 justify-center items-center">
+
       <button (click)="fetchRecipeSuggestions()"
          class="bg-amber-500 hover:bg-amber-400 text-white font-bold py-2 px-4 rounded mt-2 m-2">
          Get another dinner Suggestion
       </button>
    </div>
 
-   <!--   @if(!activesearch){
-   <p class="text-center text-lg text-lime-700 mt-4 font-bold">Search to discover delicious recipes!</p>
-   } -->
-
-
-   <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-2 overflow-y-auto">
-      <!-- Display only the first recipe from each category -->
+   <div class="w-[90vw] h-[60vh] p-4 grid grid-cols-1 sm:grid-cols-3 gap-4 m-2 overflow-y-auto">
       <!-- Appetizer-->
       <div class="bg-white rounded-lg shadow-md p-4 flex flex-col justify-center">
          @if(appetizer.length > 0){
-         <img [src]="appetizer[0].image" width="200" class="mx-auto mb-2" />
+         <img [src]="appetizer[0].image" width="200" height="150" class="mx-auto mb-2" />
          <h3 class="text-lg font-semibold mb-2 text-center">{{ appetizer[0].label }}</h3>
          <p class="text-center">Time to cook: {{ appetizer[0].totalTime }}</p>
          <p class="text-center">
@@ -31,7 +29,7 @@
       <!-- Main Course -->
       <div class="bg-white rounded-lg shadow-md p-4 flex flex-col justify-center">
          @if(mainCourse.length > 0){
-         <img [src]="mainCourse[0].image" width="200" class="mx-auto mb-2" />
+         <img [src]="mainCourse[0].image" width="200" height="150" class="mx-auto mb-2" />
          <h3 class="text-lg font-semibold mb-2 text-center">{{ mainCourse[0].label }}</h3>
          <p class="text-center">Time to cook: {{ mainCourse[0].totalTime }}</p>
          <p class="text-center">
@@ -40,14 +38,14 @@
                Go to recipe
             </a>
          </p>
+
          }
       </div>
 
       <!-- Dessert Grid Item -->
       <div class="bg-white rounded-lg shadow-md p-4 flex flex-col justify-center">
-
          @if(desserts.length > 0){
-         <img [src]="desserts[0].image" width="200" class="mx-auto mb-2" />
+         <img [src]="desserts[0].image" width="200" height="150" class="mx-auto mb-2" />
          <h3 class="text-lg font-semibold mb-2 text-center">{{ desserts[0].label }}</h3>
          <p class="text-center">Time to cook: {{ desserts[0].totalTime }}</p>
          <p class="text-center">
@@ -56,6 +54,7 @@
                Go to recipe
             </a>
          </p>
+
          }
       </div>
    </div>

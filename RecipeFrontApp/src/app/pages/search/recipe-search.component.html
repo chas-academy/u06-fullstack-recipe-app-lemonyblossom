@@ -1,16 +1,13 @@
-<div class=" flex flex-col  h-full mt-2">
-   <div class="search-container mt-5 justify-center items-center">
-      <!--       <label for="searchTerm" class="text-yellow-700 mt-2 m-2"></label>
- --> <input type="text" id="searchTerm" placeholder="Search for recipes..." [(ngModel)]="searchTerm"
-         class="border-2 border-yellow-700 rounded-md px-2 py-1 bg-white m-2">
+<div class="h-full mt-2 flex flex-col">
+   <div class="search-container mt-5 float-left items-center flex ">
+      <label for="searchTerm" class="text-yellow-700 mt-2 m-2">Search</label>
+      <input type="text" id="searchTerm" placeholder="Search for recipes..." [(ngModel)]="searchTerm"
+         class="border-2 border-yellow-700 rounded-md px-2 py-1 bg-white m-2" (keydown.enter)="searchRecipes()">
 
       <button (click)="searchRecipes()"
          class="bg-amber-500 hover:bg-amber-400 text-white font-bold py-2 px-4 rounded mt-2 m-2">
          Get Recipes
       </button>
-      @if(!activesearch){
-      <p class="text-center text-lg text-lime-700 mt-4 font-bold">Search to discover delicious recipes!</p>
-      }
    </div>
 
    <div class="h-dvh grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-2 overflow-y-auto">

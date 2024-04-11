@@ -16,7 +16,6 @@ export class HomeComponent implements OnInit {
   appetizer: RecipeResponse[] = [];
   mainCourse: RecipeResponse[] = [];
   desserts: RecipeResponse[] = [];
-  activesearch = false;
 
 
   constructor(private recipeService: RecipeService) {

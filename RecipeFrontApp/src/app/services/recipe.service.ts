@@ -31,9 +31,9 @@ export class RecipeService {
     cuisineType = '';
     mealType = '';
     let url =
-      this.baseUrl +
+      this.baseUrl + '&random=true' +
       '&q=' +
-      q +
+      q + '&mealtype=' +
       '&app_id=' +
       this.app_id +
       '&app_key=' +
