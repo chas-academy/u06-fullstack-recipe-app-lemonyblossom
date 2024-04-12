@@ -2,28 +2,28 @@
   <h1 class="text-3xl font-bold" (click)="redirectToHome()"> {{ title }} </h1>
   <div class="flex gap-4">
     <button routerLink="/search" routerLinkActive="active" ariaCurrentWhenActive="page"
-      class="bg-amber-500 hover:bg-amber-400 text-white font-bold py-2 px-4 rounded mt-2 m-2">Search</button>
+      class="border-2 border-amber-400 bg-amber-500 hover:bg-amber-400 text-white font-bold py-2 px-4 rounded mt-2 m-2">Search</button>
 
     @if((loggedIn$ | async)?.loginState )
     {
     <button routerLink="/profile" routerLinkActive="active" ariaCurrentWhenActive="page"
-      class="bg-amber-500 hover:bg-amber-400 text-white font-bold py-2 px-4 rounded mt-2 m-2">Profile</button>
+      class="border-2 border-amber-400 bg-amber-500 hover:bg-amber-400 text-white font-bold py-2 px-4 rounded mt-2 m-2">Profile</button>
     <button (click)="logout()"
-      class="bg-amber-500 hover:bg-amber-400 text-white font-bold py-2 px-4 rounded mt-2 m-2">Logout</button>
+      class="border-amber-400bg-amber-500 hover:bg-amber-400 text-white font-bold py-2 px-4 rounded mt-2 m-2">Logout</button>
 
     <span class="mt-2">Logged in as {{(loggedIn$ | async)?.user?.name}}</span>
     }
     @else
     {
     <button routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page"
-      class="bg-amber-500 hover:bg-amber-400 text-white font-bold py-2 px-4 rounded mt-2 m-2">Login</button>
+      class="border-2 border-amber-400 bg-amber-500 hover:bg-amber-400 text-white font-bold py-2 px-4 rounded mt-2 m-2">Login</button>
     <button routerLink="/register" routerLinkActive="active" ariaCurrentWhenActive="page"
-      class="bg-amber-500 hover:bg-amber-400 text-white font-bold py-2 px-4 rounded mt-2 m-2">Register</button>
+      class="border-2 border-amber-400 bg-amber-500 hover:bg-amber-400 text-white font-bold py-2 px-4 rounded mt-2 m-2">Register</button>
     }
   </div>
 </nav>
 
-<main class="main bg-gradient-to-br from-beige to-latte flex flex-col items-center justify-center mt-16">
+<main class="main h-screen bg-gradient-to-br from-beige to-latte flex flex-col items-center justify-center mt-5">
   <!-- all content through router pops up here -->
   <router-outlet />
 </main>

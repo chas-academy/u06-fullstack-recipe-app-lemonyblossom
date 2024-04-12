@@ -4,6 +4,7 @@ export interface RecipeResponse {
    ingredientLines?: string[];
    totalTime: number;
    yield?: number;
+   healthLabels?: string[];
    dietLabels?: string[];
    cautions?: string[];
    cuisineType?: string[];
@@ -12,4 +13,5 @@ export interface RecipeResponse {
    instructions?: string;
    tags?: string[];
    self: string;
+   source: string[];
 }

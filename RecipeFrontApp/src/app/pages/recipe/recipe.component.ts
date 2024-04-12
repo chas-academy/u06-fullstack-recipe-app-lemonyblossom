@@ -33,6 +33,12 @@ export class RecipeComponent implements OnInit {
   getRecipeById() {
     this.recipeService.getRecipeById(this.id).subscribe((res) => {
       console.table(res);
+      let healthLabelsValue = res.recipe.healthLabels !== undefined && res.recipe.healthLabels.length > 0 ?
+        res.recipe.healthLabels : 'no diet labels';
+
+      if (typeof healthLabelsValue === 'number' && healthLabelsValue <= 0) {
+        healthLabelsValue = 'no diet labels';
+      }
 
       let recipe: RecipeResponse = {
         label: res.recipe.label,
@@ -40,7 +46,7 @@ export class RecipeComponent implements OnInit {
         ingredientLines: res.recipe.ngredientLines,
         totalTime: res.recipe.totalTime,
         yield: res.recipe.yield,
-        dietLabels: res.recipe.dietLabels,
+        healthLabels: healthLabelsValue,
         cautions: res.recipe.cautions,
         cuisineType: res.recipe.cuisineType,
         mealType: res.recipe.mealType,
@@ -48,6 +54,7 @@ export class RecipeComponent implements OnInit {
         instructions: res.recipe.instructions,
         tags: res.recipe.tags,
         self: res?.self,
+        source: res.recipe.source,
       };
       console.table(recipe);
       this.recipe = recipe;

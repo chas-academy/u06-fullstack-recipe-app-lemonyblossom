@@ -1,11 +1,11 @@
-<div class="flex flex-col h-screen justify-center items-center p-2 mt-4">
+<div class="flex flex-col h-screen justify-center items-center p-2">
    <h2 class="text-4xl font-bold text-center text-white mb-4">
       Stuck on dinner? We've got you!
    </h2>
-   <div class="search-container mt-5 justify-center items-center">
+   <div class="search-container justify-center items-center">
 
       <button (click)="fetchRecipeSuggestions()"
-         class="bg-amber-500 hover:bg-amber-400 text-white font-bold py-2 px-4 rounded mt-2 m-2">
+         class="border-2 border-amber-400 bg-amber-500 hover:bg-amber-400 text-white font-bold py-2 px-4 rounded mx-2">
          Get another dinner Suggestion
       </button>
    </div>
@@ -15,7 +15,7 @@
       <div class="bg-white rounded-lg shadow-md p-4 flex flex-col justify-center">
          @if(appetizer.length > 0){
          <img [src]="appetizer[0].image" width="200" height="150" class="mx-auto mb-2" />
-         <h3 class="text-lg font-semibold mb-2 text-center">{{ appetizer[0].label }}</h3>
+         <h3 class="text-lg font-semibold mb-2 text-center h-20">{{ appetizer[0].label }}</h3>
          <p class="text-center">Time to cook: {{ appetizer[0].totalTime }}</p>
          <p class="text-center">
             <a [routerLink]="['/recipe', appetizer[0].self | recipeidformatter]"
@@ -29,16 +29,17 @@
       <!-- Main Course -->
       <div class="bg-white rounded-lg shadow-md p-4 flex flex-col justify-center">
          @if(mainCourse.length > 0){
-         <img [src]="mainCourse[0].image" width="200" height="150" class="mx-auto mb-2" />
-         <h3 class="text-lg font-semibold mb-2 text-center">{{ mainCourse[0].label }}</h3>
-         <p class="text-center">Time to cook: {{ mainCourse[0].totalTime }}</p>
-         <p class="text-center">
-            <a [routerLink]="['/recipe', mainCourse[0].self | recipeidformatter]"
-               class="text-amber-500 hover:text-amber-400 font-bold">
-               Go to recipe
-            </a>
-         </p>
-
+         <img [src]="mainCourse[0].image" width="200" height="150" class="mx-auto mb-2 " />
+         <div class="flex flex-col justify-center items-center"> <!-- Adjust the height as needed -->
+            <h3 class="text-lg font-semibold mb-2 text-center h-20">{{ mainCourse[0].label }}</h3>
+            <p class="text-center">Time to cook: {{ mainCourse[0].totalTime }}</p>
+            <p class="text-center">
+               <a [routerLink]="['/recipe', mainCourse[0].self | recipeidformatter]"
+                  class="text-amber-500 hover:text-amber-400 font-bold">
+                  Go to recipe
+               </a>
+            </p>
+         </div>
          }
       </div>
 
@@ -46,15 +47,16 @@
       <div class="bg-white rounded-lg shadow-md p-4 flex flex-col justify-center">
          @if(desserts.length > 0){
          <img [src]="desserts[0].image" width="200" height="150" class="mx-auto mb-2" />
-         <h3 class="text-lg font-semibold mb-2 text-center">{{ desserts[0].label }}</h3>
-         <p class="text-center">Time to cook: {{ desserts[0].totalTime }}</p>
-         <p class="text-center">
-            <a [routerLink]="['/recipe', desserts[0].self | recipeidformatter]"
-               class="text-amber-500 hover:text-amber-400 font-bold">
-               Go to recipe
-            </a>
-         </p>
-
+         <div class="flex flex-col justify-center items-center"> <!-- Adjust the height as needed -->
+            <h3 class="text-lg font-semibold mb-2 text-center h-20">{{ desserts[0].label }}</h3>
+            <p class="text-center">Time to cook: {{ desserts[0].totalTime }}</p>
+            <p class="text-center">
+               <a [routerLink]="['/recipe', desserts[0].self | recipeidformatter]"
+                  class="text-amber-500 hover:text-amber-400 font-bold">
+                  Go to recipe
+               </a>
+            </p>
+         </div>
          }
       </div>
    </div>
