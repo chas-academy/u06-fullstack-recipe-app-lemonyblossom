@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   title = "What's Cookin' ey?";
   recipes: RecipeResponse[] = [];
   loggedIn$: Observable<LoggedInUser>;
+  isMenuOpen: boolean = false;
 
   constructor(private auth: AuthService, private route: Router) {
     this.loggedIn$ = this.auth.loggedIn$;
