@@ -3,14 +3,15 @@ import { AuthService } from './services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { LoggedInUser } from './interfaces/loggedinuser';
 import { LoginComponent } from './pages/login/login.component';
+import { FooterComponent } from './footer/footer.component';
 import { Observable } from 'rxjs';
 import { Router, RouterLink, RouterLinkActive, RouterModule, RouterOutlet } from '@angular/router';
 import { RecipeResponse } from './interfaces/recipe';
-import { CapitalizePipe } from './capitalize.pipe';
+import { CapitalizePipe } from './pipes/capitalize.pipe';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, RouterLink, RouterModule, RouterLinkActive, AsyncPipe, LoginComponent, CapitalizePipe],
+  imports: [CommonModule, RouterOutlet, RouterLink, RouterModule, RouterLinkActive, AsyncPipe, LoginComponent, FooterComponent, CapitalizePipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
