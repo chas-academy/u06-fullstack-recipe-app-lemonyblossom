@@ -6,11 +6,11 @@ import { LoginComponent } from './pages/login/login.component';
 import { Observable } from 'rxjs';
 import { Router, RouterLink, RouterLinkActive, RouterModule, RouterOutlet } from '@angular/router';
 import { RecipeResponse } from './interfaces/recipe';
-
+import { CapitalizePipe } from './capitalize.pipe';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, RouterLink, RouterModule, RouterLinkActive, AsyncPipe, LoginComponent],
+  imports: [CommonModule, RouterOutlet, RouterLink, RouterModule, RouterLinkActive, AsyncPipe, LoginComponent, CapitalizePipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
