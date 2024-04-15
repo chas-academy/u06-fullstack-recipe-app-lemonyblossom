@@ -1,17 +1,21 @@
 <nav class="flex flex-wrap items-center justify-between gap-4 fixed top-0 w-full bg-white shadow-md z-10 px-4 py-2">
-  <h1 class="text-3xl font-bold" (click)="redirectToHome()"> {{ title }} </h1>
-  <div class="flex gap-4">
+  <div class="flex flex-row 2">
+    <h1 class="text-3xl font-bold" (click)="redirectToHome()"> {{ title }} </h1>
     <button routerLink="/search" routerLinkActive="active" ariaCurrentWhenActive="page"
       class="border-2 border-amber-400 bg-amber-500 hover:bg-amber-400 text-white font-bold py-2 px-4 rounded mt-2 m-2">Search</button>
+  </div>
+
+  <div class="flex gap-4">
 
     @if((loggedIn$ | async)?.loginState )
     {
     <button routerLink="/profile" routerLinkActive="active" ariaCurrentWhenActive="page"
       class="border-2 border-amber-400 bg-amber-500 hover:bg-amber-400 text-white font-bold py-2 px-4 rounded mt-2 m-2">Profile</button>
-    <button (click)="logout()"
-      class="border-amber-400bg-amber-500 hover:bg-amber-400 text-white font-bold py-2 px-4 rounded mt-2 m-2">Logout</button>
+    <button routerLink="/profile" routerLinkActive="active" ariaCurrentWhenActive="page"
+      class="border-2 border-amber-400 bg-amber-500 hover:bg-amber-400 text-white font-bold py-2 px-4 rounded mt-2 m-2">Logout</button>
 
-    <span class="mt-2">Logged in as {{(loggedIn$ | async)?.user?.name}}</span>
+    <div> <span class="mt-2">Logged in as {{(loggedIn$ | async)?.user?.name}}</span></div>
+
     }
     @else
     {
@@ -20,7 +24,9 @@
     <button routerLink="/register" routerLinkActive="active" ariaCurrentWhenActive="page"
       class="border-2 border-amber-400 bg-amber-500 hover:bg-amber-400 text-white font-bold py-2 px-4 rounded mt-2 m-2">Register</button>
     }
+
   </div>
+
 </nav>
 
 <main class="main h-screen bg-gradient-to-br from-beige to-latte flex flex-col items-center justify-center mt-5">
