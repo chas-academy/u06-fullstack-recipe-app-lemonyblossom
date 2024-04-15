@@ -33,14 +33,6 @@ export class LoginComponent {
   }
 
 
-  /*  login() {
-     this.loginDetails = {
-       email: this.loginForm.value.email || '',
-       password: this.loginForm.value.password || '',
-     }
-     this.auth.logIn(this.loginDetails);
-   } */
-
   async login() {
     this.loginDetails = {
       email: this.loginForm.value.email || '',
@@ -52,7 +44,6 @@ export class LoginComponent {
       this.router.navigateByUrl('/');
     } catch (error) {
       console.error('Login failed:', error);
-      // Handle login error here (e.g., display error message)
     }
   }
 
